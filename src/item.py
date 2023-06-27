@@ -21,6 +21,12 @@ class Item:
         self.price = price
         self.quantity = quantity
 
+    def __repr__(self):
+        return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
+
+    def __str__(self):
+        return self.__name
+
     @property
     def name(self):
         return self.__name
@@ -34,8 +40,7 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls):
-        directory_path = os.path.abspath('D:/electronics-shop-project/src')
-        file_path = os.path.join(directory_path, 'items.csv')
+        file_path = os.path.join('.', 'src', 'items.csv')
         with open(file_path) as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:

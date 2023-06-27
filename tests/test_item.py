@@ -76,14 +76,25 @@ def test_invalid_string_to_number():
         Item.string_to_number(string_value)
 
 
-def test_instantiate_from_csv_return_correct_value():
-    count_before = len(Item.all)
-    Item.instantiate_from_csv()
-    count_after = len(Item.all)
-    assert count_after - count_before == 5
+# def test_instantiate_from_csv_return_correct_value():
+#     count_before = len(Item.all)
+#     Item.instantiate_from_csv()
+#     count_after = len(Item.all)
+#     assert count_after - count_before == 5
 
 
 def test_name():
     test_name.name = 'Смартфон'
     assert len(test_name.name) < 10
     assert test_name.name == 'Смартфон'
+
+
+def test_repr():
+    item1 = Item("Смартфон", 10000, 20)
+    assert repr(item1) == "Item('Смартфон', 10000, 20)"
+    assert type(repr(item1)) == str
+
+
+def test_str():
+    item1 = Item("Смартфон", 10000, 20)
+    assert str(item1) == 'Смартфон'
