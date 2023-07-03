@@ -1,5 +1,6 @@
 import pytest
 from src.item import Item
+from src.phone import Phone
 
 
 class TestItemMethods:
@@ -76,13 +77,6 @@ def test_invalid_string_to_number():
         Item.string_to_number(string_value)
 
 
-# def test_instantiate_from_csv_return_correct_value():
-#     count_before = len(Item.all)
-#     Item.instantiate_from_csv()
-#     count_after = len(Item.all)
-#     assert count_after - count_before == 5
-
-
 def test_name():
     test_name.name = 'Смартфон'
     assert len(test_name.name) < 10
@@ -98,3 +92,26 @@ def test_repr():
 def test_str():
     item1 = Item("Смартфон", 10000, 20)
     assert str(item1) == 'Смартфон'
+
+
+def test_str_1():
+    phone1 = Phone("iPhone 14", 120_000, 5, 2)
+    assert str(phone1) == 'iPhone 14'
+
+
+def test_repr_1():
+    phone1 = Phone("iPhone 14", 120_000, 5, 2)
+    assert repr(phone1) == "Phone('iPhone 14', 120000, 5, 2)"
+    assert type(repr(phone1)) == str
+
+
+def test_number_of_sim():
+    phone1 = Phone("iPhone 14", 120_000, 5, 2)
+    assert phone1.number_of_sim == 2
+
+
+def test_add():
+    item1 = Item("Smartfon", 10000, 20)
+    phone1 = Phone("iPhone 14", 120_000, 5, 2)
+    assert item1 + phone1 == 25
+    assert phone1 + phone1 == 10
