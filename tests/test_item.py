@@ -1,6 +1,7 @@
 import pytest
 from src.item import Item
 from src.phone import Phone
+from src.keyboard import Keyboard
 
 
 class TestItemMethods:
@@ -115,3 +116,16 @@ def test_add():
     phone1 = Phone("iPhone 14", 120_000, 5, 2)
     assert item1 + phone1 == 25
     assert phone1 + phone1 == 10
+
+
+class TestKeyboard:
+    def test_init(self):
+        keyboard = Keyboard('Dark Project KD87A', 9600, 5, 'EN')
+        assert keyboard.name == 'Dark Project KD87A'
+        assert keyboard.price == 9600
+        assert keyboard.quantity == 5
+        assert keyboard.language == 'EN'
+
+    def test_str(self):
+        keyboard = Keyboard('Dark Project KD87A', 9600, 5, 'EN')
+        assert str(keyboard) == 'Dark Project KD87A'
