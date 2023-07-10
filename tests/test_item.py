@@ -1,5 +1,5 @@
 import pytest
-from src.item import Item
+from src.item import Item, InstantiateCSVError
 from src.phone import Phone
 from src.keyboard import Keyboard
 
@@ -129,3 +129,15 @@ class TestKeyboard:
     def test_str(self):
         keyboard = Keyboard('Dark Project KD87A', 9600, 5, 'EN')
         assert str(keyboard) == 'Dark Project KD87A'
+
+
+def test_error_instantiate_csv_invalid_file():
+    try:
+        Item.instantiate_from_csv()
+    except Exception as e:
+        assert str(e) == 'Отсутствует файл items.csv'
+
+
+def test_instantiate_csv_error():
+    error = InstantiateCSVError()
+    assert str(error) == "Файл items.csv поврежден"
